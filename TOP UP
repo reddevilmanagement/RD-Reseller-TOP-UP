@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RD Reseller Diamond</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+}
+
+.header{
+    background:#0b0b0b;
+    padding:15px 20px;
+    border-bottom:2px solid #f5c542;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#f5c542;
+}
+
+.hero{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+    url('https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=1200');
+    background-size:cover;
+    background-position:center;
+    min-height:220px;
+
+    padding:30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.product{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.icon{
+    width:90px;
+    height:90px;
+    border-radius:20px;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+}
+
+.product h1{
+    font-size:38px;
+}
+
+.safe{
+    border:1px solid #fff;
+    padding:20px;
+    border-radius:15px;
+}
+
+.section{
+    padding:25px;
+}
+
+.step{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.step-number{
+    width:40px;
+    height:40px;
+    background:#8e8e8e;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.card{
+    background:#111;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:20px;
+}
+
+input{
+    width:100%;
+    background:#000;
+    color:white;
+    border:1px solid #444;
+    padding:15px;
+    border-radius:12px;
+    font-size:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.box{
+    background:#f1f1f1;
+    color:#000;
+    border-radius:12px;
+    padding:20px;
+}
+
+.box-title{
+    font-size:14px;
+}
+
+.box-value{
+    font-size:28px;
+    font-weight:bold;
+    margin-top:8px;
+    color:#ff4fa3;
+}
+
+.result{
+    margin-top:20px;
+    background:#202938;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+}
+
+.result h2{
+    color:#ff4fa3;
+    font-size:42px;
+    margin-top:10px;
+}
+
+.footer-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#5f6775;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    color:#ffd200;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.btn{
+    background:#10c7d8;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.hero{
+    flex-direction:column;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.product h1{
+    font-size:28px;
+}
+
+.result h2{
+    font-size:30px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<div class="logo">💎 RD RESELLER</div>
+</div>
+
+<div class="hero">
+
+<div class="product">
+<div class="icon">💎</div>
+
+<div>
+<h1>MOMA DIAMOND</h1>
+<p>Reseller Diamond Premium</p>
+</div>
+</div>
+
+<div class="safe">
+🔒 Pembayaran Aman
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="step">
+<div class="step-number">1</div>
+<h2>Masukkan Nominal</h2>
+</div>
+
+<div class="card">
+
+<input
+type="number"
+id="uang"
+placeholder="Masukkan Rupiah"
+oninput="hitung()">
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="step">
+<div class="step-number">2</div>
+<h2>Hasil Diamond</h2>
+</div>
+
+<div class="grid">
+
+<div class="box">
+<div class="box-title">Nominal</div>
+<div class="box-value" id="nominalBox">
+Rp 0
+</div>
+</div>
+
+<div class="box">
+<div class="box-title">Diamond</div>
+<div class="box-value" id="diamondBox">
+0
+</div>
+</div>
+
+</div>
+
+<div class="result">
+
+<h3>Jumlah Diamond</h3>
+
+<h2 id="hasil">
+0 💎
+</h2>
+
+</div>
+
+</div>
+
+<div style="height:100px;"></div>
+
+<div class="footer-bar">
+
+<div>
+
+<div class="price" id="footerPrice">
+Rp 0
+</div>
+
+<div id="footerDiamond">
+0 Diamond
+</div>
+
+</div>
+
+<button class="btn"
+onclick="salinHasil()">
+Salin Hasil
+</button>
+
+</div>
+
+<script>
+
+const RATE = 3.71;
+
+function hitung(){
+
+let uang =
+Number(document.getElementById('uang').value)||0;
+
+let diamond =
+Math.floor(uang * RATE);
+
+document.getElementById('hasil').innerHTML =
+diamond.toLocaleString('id-ID') + ' 💎';
+
+document.getElementById('diamondBox').innerHTML =
+diamond.toLocaleString('id-ID');
+
+document.getElementById('nominalBox').innerHTML =
+'Rp ' + uang.toLocaleString('id-ID');
+
+document.getElementById('footerPrice').innerHTML =
+'Rp ' + uang.toLocaleString('id-ID');
+
+document.getElementById('footerDiamond').innerHTML =
+diamond.toLocaleString('id-ID') + ' Diamond';
+}
+
+function salinHasil(){
+
+let text =
+document.getElementById('hasil').innerText;
+
+navigator.clipboard.writeText(text);
+
+alert('Hasil berhasil disalin');
+}
+
+</script>
+
+</body>
+</html>
