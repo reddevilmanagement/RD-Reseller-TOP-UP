@@ -1,94 +1,374 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RD Reseller Top Up</title>
+
+<title>RD Reseller TOP UP</title>
 
 <style>
-body{
-background:#000;
-color:white;
-font-family:Arial;
-padding:20px;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
 }
 
-h1{
-text-align:center;
-color:#ff4da6;
+body{
+background:#000;
+padding:15px;
+}
+
+.container{
+border:2px solid #ffd700;
+border-radius:10px;
+padding:15px;
+max-width:1200px;
+margin:auto;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+gap:18px;
 }
 
 .card{
-background:#111;
-padding:20px;
-border-radius:15px;
+background:#fff;
+border:2px solid #ffd700;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer;
+transition:.2s;
 }
 
-<div class="grid">
+.card:hover{
+transform:scale(1.03);
+}
 
-<div class="item" onclick="pilih(10000)">
-    <div class="diamond">37.037 💎</div>
-    <div class="harga">Rp 10.000</div>
-</div>
+.card.active{
+box-shadow:0 0 15px #ffd700;
+}
 
-<div class="item" onclick="pilih(20000)">
-    <div class="diamond">74.074 💎</div>
-    <div class="harga">Rp 20.000</div>
-</div>
+.top{
+padding:12px;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+min-height:90px;
+}
 
-<div class="item" onclick="pilih(30000)">
-    <div class="diamond">111.111 💎</div>
-    <div class="harga">Rp 30.000</div>
-</div>
+.info{
+font-size:14px;
+font-weight:bold;
+color:#000;
+}
 
-</div>
+.bonus{
+font-size:13px;
+font-weight:normal;
+color:#444;
+margin-top:4px;
+}
 
-.hasil{
-font-size:40px;
+.diamond{
+font-size:38px;
+}
+
+.bottom{
+background:#aeb4be;
+color:#fff;
 text-align:center;
+padding:12px;
+font-size:26px;
+font-weight:bold;
+}
+
+.custom-input{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:1px solid #999;
+font-size:14px;
+}
+
+.result{
 margin-top:20px;
-color:#ff4da6;
+background:#111;
+border:2px solid #ffd700;
+border-radius:10px;
+padding:20px;
+text-align:center;
+color:white;
+}
+
+.result h2{
+color:#ff59b7;
+font-size:42px;
+margin-bottom:10px;
+}
+
+.result p{
+font-size:18px;
+}
+
+@media(max-width:600px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.bottom{
+font-size:18px;
+}
+
+.result h2{
+font-size:30px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<h1>💎 RD RESELLER TOP UP</h1>
+<div class="container">
+
+<div class="grid">
 
 <div class="card">
+<div class="top">
 
-<input
-type="number"
-id="uang"
-placeholder="Masukkan Nominal Rupiah"
-oninput="hitung()">
+<div>
+<input type="number"
+id="customNominal"
+class="custom-input"
+placeholder="Custom +0">
+</div>
 
-<div class="hasil" id="hasil">
-0 Diamond
+<div class="diamond">💎</div>
+
+</div>
+
+<div class="bottom"
+onclick="customHitung()">
+Rp -
+</div>
+</div>
+
+
+<div class="card" onclick="pilih(10000,37037,this)">
+<div class="top">
+<div>
+<div class="info">37,037</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 10.000</div>
+</div>
+
+<div class="card" onclick="pilih(20000,74074,this)">
+<div class="top">
+<div>
+<div class="info">74,074</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 20.000</div>
+</div>
+
+<div class="card" onclick="pilih(30000,111111,this)">
+<div class="top">
+<div>
+<div class="info">111,111</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 30.000</div>
+</div>
+
+<div class="card" onclick="pilih(50000,185185,this)">
+<div class="top">
+<div>
+<div class="info">185,185</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 50.000</div>
+</div>
+
+<div class="card" onclick="pilih(100000,370370,this)">
+<div class="top">
+<div>
+<div class="info">370,370</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 100.000</div>
+</div>
+
+<div class="card" onclick="pilih(150000,555555,this)">
+<div class="top">
+<div>
+<div class="info">555,555</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 150.000</div>
+</div>
+
+<div class="card" onclick="pilih(200000,740740,this)">
+<div class="top">
+<div>
+<div class="info">740,740</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 200.000</div>
+</div>
+
+<div class="card" onclick="pilih(300000,1111111,this)">
+<div class="top">
+<div>
+<div class="info">1,111,111</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 300.000</div>
+</div>
+
+<div class="card" onclick="pilih(500000,1851851,this)">
+<div class="top">
+<div>
+<div class="info">1,851,851</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 500.000</div>
+</div>
+
+<div class="card" onclick="pilih(1000000,3703703,this)">
+<div class="top">
+<div>
+<div class="info">3,703,703</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 1.000.000</div>
+</div>
+
+<div class="card" onclick="pilih(2000000,7407407,this)">
+<div class="top">
+<div>
+<div class="info">7,407,407</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 2.000.000</div>
+</div>
+
+<div class="card" onclick="pilih(3000000,11111111,this)">
+<div class="top">
+<div>
+<div class="info">11,111,111</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 3.000.000</div>
+</div>
+
+<div class="card" onclick="pilih(5000000,18518518,this)">
+<div class="top">
+<div>
+<div class="info">18,518,518</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 5.000.000</div>
+</div>
+
+<div class="card" onclick="pilih(10000000,37037037,this)">
+<div class="top">
+<div>
+<div class="info">37,037,037</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 10.000.000</div>
+</div>
+
+<div class="card" onclick="pilih(20000000,74074074,this)">
+<div class="top">
+<div>
+<div class="info">74,074,074</div>
+<div class="bonus">+0 Bonus</div>
+</div>
+<div class="diamond">💎</div>
+</div>
+<div class="bottom">Rp 20.000.000</div>
+</div>
+
+</div>
+
+<div class="result">
+<h2 id="hasilDiamond">0 💎</h2>
+<p id="hasilHarga">Belum dipilih</p>
 </div>
 
 </div>
 
 <script>
 
-const RATE = 3.71;
+function pilih(harga,diamond,el){
 
-function hitung(){
+document.querySelectorAll('.card')
+.forEach(k=>k.classList.remove('active'));
 
-let uang =
-Number(document.getElementById('uang').value)||0;
+el.classList.add('active');
+
+document.getElementById('hasilDiamond').innerHTML =
+diamond.toLocaleString('id-ID') + ' 💎';
+
+document.getElementById('hasilHarga').innerHTML =
+'Nominal Rp ' + harga.toLocaleString('id-ID');
+
+}
+
+function customHitung(){
+
+let nominal =
+Number(document.getElementById('customNominal').value);
+
+if(!nominal)return;
 
 let diamond =
-Math.floor(uang * RATE);
+Math.floor(nominal * 3.7037);
 
-document.getElementById('hasil').innerHTML =
-diamond.toLocaleString('id-ID') + ' Diamond';
+document.getElementById('hasilDiamond').innerHTML =
+diamond.toLocaleString('id-ID') + ' 💎';
+
+document.getElementById('hasilHarga').innerHTML =
+'Custom Rp ' + nominal.toLocaleString('id-ID');
 
 }
 
 </script>
 
 </body>
-
 </html>
