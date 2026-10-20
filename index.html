@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RD Reseller Top Up</title>
+
+<style>
+body{
+background:#000;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#ff4da6;
+}
+
+.card{
+background:#111;
+padding:20px;
+border-radius:15px;
+}
+
+input{
+width:100%;
+padding:15px;
+font-size:20px;
+border-radius:10px;
+}
+
+.hasil{
+font-size:40px;
+text-align:center;
+margin-top:20px;
+color:#ff4da6;
+}
+</style>
+</head>
+
+<body>
+
+<h1>💎 RD RESELLER TOP UP</h1>
+
+<div class="card">
+
+<input
+type="number"
+id="uang"
+placeholder="Masukkan Nominal Rupiah"
+oninput="hitung()">
+
+<div class="hasil" id="hasil">
+0 Diamond
+</div>
+
+</div>
+
+<script>
+
+const RATE = 3.71;
+
+function hitung(){
+
+let uang =
+Number(document.getElementById('uang').value)||0;
+
+let diamond =
+Math.floor(uang * RATE);
+
+document.getElementById('hasil').innerHTML =
+diamond.toLocaleString('id-ID') + ' Diamond';
+
+}
+
+</script>
+
+</body>
+
+</html>
